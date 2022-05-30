@@ -1,0 +1,26 @@
+.graph {
+  margin: 100px auto;
+  width: 700px;
+  height: 500px;
+  border: 0px solid black;
+  border-left-width: 1px;
+  border-bottom-width: 1px;
+  padding: 0 15px 0 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.column {
+  height: 50px;
+  background-color: pink;
+  flex: 1;
+  align-self: flex-end;
+  position: relative;
+}
+
+.x {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 125%);
+}

@@ -1,0 +1,91 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+button {
+  width: 100%;
+}
+
+.dice-container {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 10px;
+}
+
+.dice {
+  border: 1px solid black;
+  height: 200px;
+  width: 200px;
+  padding: 50px;
+}
+
+.dots-container {
+  height: 100px;
+  width: 100px;
+  position: relative;
+}
+
+.dot {
+  background-color: black;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+}
+
+.top-left {
+  top: 0;
+  left: 0;
+}
+
+.top-right {
+  top: 0;
+  right: 0;
+}
+
+.middle-left {
+  top: 25%;
+  left: 0;
+  transform: translateY(50%);
+}
+
+.middle-right {
+  top: 25%;
+  right: 0;
+  transform: translateY(50%);
+}
+
+.middle {
+  top: 25%;
+  left: 25%;
+  transform: translate(50%, 50%);
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+}

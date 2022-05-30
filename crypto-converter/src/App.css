@@ -1,0 +1,19 @@
+.converter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.result {
+  display: flex;
+  gap: 20px;
+}
+
+.positive {
+  color: red;
+}
+
+.negative {
+  color: green;
+}

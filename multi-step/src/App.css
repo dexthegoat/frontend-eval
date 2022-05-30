@@ -1,0 +1,13 @@
+label {
+  display: block;
+}
+
+input {
+  display: block;
+}
+
+#back-button {
+  background-color: transparent;
+  border: none;
+  color: blue;
+}

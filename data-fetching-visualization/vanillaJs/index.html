@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .graph {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+        width: 50vw;
+        height: 50vh;
+        border: 0px solid black;
+        border-left-width: 3px;
+        border-bottom-width: 3px;
+        margin: 25vh auto;
+        padding: 10px;
+        position: relative;
+      }
+      .col {
+        position: relative;
+        background-color: grey;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        flex: 1;
+      }
+      .number-label {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, 120%);
+      }
+      .y-label {
+        position: absolute;
+        left: 0;
+        transform: translate(-150%, 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="graph">
+        <!-- <div class="col">
+          <div class="number-label">1</div>
+        </div>
+        <div class="col">
+          <div class="number-label">2</div>
+        </div>
+        <div class="col">
+          <div class="number-label">1</div>
+        </div> -->
+      </div>
+    </div>
+    <script>
+      const URL =
+        'https://www.random.org/integers/?num=200&min=1&max=10&col=1&base=10&format=plain&rnd=new';
+      (async () => {
+        const freqMap = {};
+        const req = await fetch(URL);
+        const res = await req.text();
+        const numbers = res.trim().split('\n').map(Number);
+        // console.log(numbers);
+        numbers.forEach((number) => {
+          if (freqMap[number]) {
+            freqMap[number] += 1;
+          } else {
+            freqMap[number] = 1;
+          }
+        });
+        // console.log(freqMap);
+        const graphEle = document.querySelector('.graph');
+        const keys = Object.keys(freqMap);
+        const maxY = Math.max(...Object.values(freqMap));
+        const minX = Math.min(...keys);
+        const maxX = Math.max(...keys);
+        // console.log({
+        //   keys,
+        //   maxY,
+        //   minX,
+        //   maxX,
+        // });
+        for (let i = minX; i <= maxX; i++) {
+          const freq = freqMap[i] || 0;
+          const heightPercentage = (freq / maxY) * 100;
+          const col = document.createElement('div');
+          col.className = 'col';
+          col.style.height = `${heightPercentage}%`;
+          graphEle.appendChild(col);
+
+          const numberEle = document.createElement('div');
+          numberEle.className = 'number-label';
+          numberEle.innerHTML = i;
+          col.appendChild(numberEle);
+        }
+
+        for (let i = 0; i < maxY; i += 10) {
+          const yLabelEle = document.createElement('div');
+          yLabelEle.classList = 'y-label';
+          yLabelEle.innerHTML = i;
+          const percentageBottom = (i / maxY) * 100;
+          yLabelEle.style.bottom = `${percentageBottom}%`;
+          graphEle.appendChild(yLabelEle);
+        }
+      })();
+    </script>
+  </body>
+</html>

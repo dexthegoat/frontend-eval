@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta name="color-scheme" content="dark light" /> -->
+    <title>Rolling Dice</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .input-container {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+        margin: 25vh auto 20px auto;
+      }
+      button {
+        width: 50px;
+      }
+      .dice-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        width: 50vw;
+        margin: 0 auto;
+      }
+      .dice {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        border: 1px solid black;
+        margin-top: 20px;
+      }
+      .top-left {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(50%, 50%);
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 50%;
+      }
+      .top-right {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-50%, 50%);
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 50%;
+      }
+      .bottom-left {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: translate(50%, -50%);
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 50%;
+      }
+      .bottom-right {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 50%;
+      }
+      .middle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 50%;
+      }
+      .middle-left {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(50%, -50%);
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 50%;
+      }
+      .middle-right {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="input-container">
+      <label for="input">Pick a number of dices</label>
+      <input type="number" required name="input" id="input" />
+      <button>Go</button>
+    </div>
+    <div class="dice-container">
+      <!-- <div class="dice">
+        <div class="middle"></div>
+        <div class="top-left"></div>
+      </div> -->
+    </div>
+    <script>
+      (function () {
+        const dotPositionMap = {
+          1: ['middle'],
+          2: ['top-left', 'bottom-right'],
+          3: ['top-left', 'middle', 'bottom-right'],
+          4: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
+          5: ['top-left', 'top-right', 'bottom-left', 'bottom-right', 'middle'],
+          6: [
+            'top-left',
+            'top-right',
+            'bottom-left',
+            'bottom-right',
+            'middle-left',
+            'middle-right',
+          ],
+        };
+        const button = document.querySelector('button');
+        button.addEventListener('click', function () {
+          const inputVal = document.querySelector('#input').value;
+          const inputNum = parseInt(inputVal);
+          if (!inputVal || inputVal === 0) {
+            alert('Please pick a number and 0 is not acceptable');
+            return;
+          }
+          const randomNums = Array.from(
+            { length: inputNum },
+            () => Math.floor(Math.random() * 6) + 1
+          );
+          const dice_container = document.querySelector('.dice-container');
+          for (let i = 0; i < randomNums.length; i++) {
+            const dice = document.createElement('div');
+            dice.className = 'dice';
+            const points = randomNums[i];
+            const classes = dotPositionMap[points];
+            classes.forEach((c) => {
+              const positon = document.createElement('div');
+              positon.className = c;
+              dice.appendChild(positon);
+            });
+            dice_container.appendChild(dice);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

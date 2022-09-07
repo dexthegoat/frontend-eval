@@ -26,7 +26,7 @@
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
-        width: 50vw;
+        width: 75vw;
         margin: 0 auto;
       }
       .dice {
@@ -111,7 +111,7 @@
   <body>
     <div class="input-container">
       <label for="input">Pick a number of dices</label>
-      <input type="number" required name="input" id="input" />
+      <input type="number" required name="input" id="input" min="1" step="1" />
       <button>Go</button>
     </div>
     <div class="dice-container">
@@ -140,9 +140,13 @@
         const button = document.querySelector('button');
         button.addEventListener('click', function () {
           const inputVal = document.querySelector('#input').value;
+          if (!inputVal) {
+            alert('Please pick a number');
+            return;
+          }
           const inputNum = parseInt(inputVal);
-          if (!inputVal || inputVal === 0) {
-            alert('Please pick a number and 0 is not acceptable');
+          if (inputNum <= 0) {
+            alert('Please pick a number that is greater than 0');
             return;
           }
           const randomNums = Array.from(
@@ -162,6 +166,9 @@
             });
             dice_container.appendChild(dice);
           }
+          setTimeout(() => {
+            dice_container.innerHTML = '';
+          }, 5000);
         });
       })();
     </script>

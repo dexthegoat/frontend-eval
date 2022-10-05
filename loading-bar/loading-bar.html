@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+        background-color: #000;
+        display: grid;
+        grid-template-rows: 25px 130px;
+        grid-template-columns: 350px;
+        grid-template-areas: 'top' 'bottom';
+        justify-content: center;
+        align-content: center;
+      }
+
+      .bar {
+        grid-area: top;
+        width: 350px;
+        height: 25px;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #fff;
+      }
+
+      .color {
+        height: 100%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #fff;
+        background: linear-gradient(
+          to right,
+          rgb(87, 74, 74),
+          rgb(43, 108, 134)
+        );
+        animation: action 3s infinite;
+      }
+
+      @keyframes action {
+        0% {
+          width: 0;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      .percentage {
+        grid-area: bottom;
+        justify-self: center;
+        align-self: center;
+      }
+
+      .percentage > input {
+        width: 60px;
+        height: 35px;
+        background-color: #000;
+        color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 5px #fff;
+        font-size: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bar">
+      <div class="color"></div>
+    </div>
+    <div class="percentage"><input type="text" value="0" id="input" /></div>
+    <script>
+      const bar = document.querySelector('.bar');
+      const color = document.querySelector('.color');
+      const input = document.querySelector('.percentage > input');
+      setInterval(() => {
+        const percentage = `${parseInt(
+          (color.clientWidth / bar.clientWidth) * 100
+        )}%`;
+        input.value = percentage;
+      }, 100);
+    </script>
+  </body>
+</html>

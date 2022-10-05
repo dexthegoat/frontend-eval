@@ -43,7 +43,7 @@ function App() {
             yc = splitedTitles[1] + splitedTitles[2];
           }
           return (
-            <div className="card" key={`${job}-${idx}`}>
+            <div className="card" key={`job-${idx}`}>
               <a href={job.url} target="blank">
                 <div className="title">
                   {splitedTitles[0]} &nbsp; {yc}

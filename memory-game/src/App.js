@@ -1,16 +1,12 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
-function randomizer(num) {
-  return Math.floor(Math.random() * num) + 1;
-}
-
 function getNums() {
   const arr = [];
-  for (let i = 0; i < 36; i++) {
-    arr.push(randomizer(18));
+  for (let i = 1; i < 19; i++) {
+    arr.push(i, i);
   }
-  return arr;
+  return arr.sort(() => Math.random() - 0.5);
 }
 
 const GAME_PHASE = {

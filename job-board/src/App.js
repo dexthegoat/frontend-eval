@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 const url1 = 'https://hacker-news.firebaseio.com/v0/jobstories.json';
@@ -12,10 +12,17 @@ function App() {
   const [jobDetails, setJobDetails] = useState([]);
   const [jump, setJump] = useState(3);
 
+  const preventRenderRef = useRef(true);
+
+  // useEffect somehow gets fired twice when using React 18
+  // useRef to stop it from happening
   useEffect(() => {
-    fetch(url1)
-      .then((res) => res.json())
-      .then((ids) => setJobIds(ids));
+    if (preventRenderRef.current) {
+      preventRenderRef.current = false;
+      fetch(url1)
+        .then((res) => res.json())
+        .then((ids) => setJobIds(ids));
+    }
   }, []);
 
   useEffect(() => {

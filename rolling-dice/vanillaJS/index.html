@@ -121,56 +121,54 @@
       </div> -->
     </div>
     <script>
-      (function () {
-        const dotPositionMap = {
-          1: ['middle'],
-          2: ['top-left', 'bottom-right'],
-          3: ['top-left', 'middle', 'bottom-right'],
-          4: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
-          5: ['top-left', 'top-right', 'bottom-left', 'bottom-right', 'middle'],
-          6: [
-            'top-left',
-            'top-right',
-            'bottom-left',
-            'bottom-right',
-            'middle-left',
-            'middle-right',
-          ],
-        };
-        const button = document.querySelector('button');
-        button.addEventListener('click', function () {
-          const inputVal = document.querySelector('#input').value;
-          if (!inputVal) {
-            alert('Please pick a number');
-            return;
-          }
-          const inputNum = parseInt(inputVal);
-          if (inputNum <= 0) {
-            alert('Please pick a number that is greater than 0');
-            return;
-          }
-          const randomNums = Array.from(
-            { length: inputNum },
-            () => Math.floor(Math.random() * 6) + 1
-          );
-          const dice_container = document.querySelector('.dice-container');
-          for (let i = 0; i < randomNums.length; i++) {
-            const dice = document.createElement('div');
-            dice.className = 'dice';
-            const points = randomNums[i];
-            const classes = dotPositionMap[points];
-            classes.forEach((c) => {
-              const positon = document.createElement('div');
-              positon.className = c;
-              dice.appendChild(positon);
-            });
-            dice_container.appendChild(dice);
-          }
-          setTimeout(() => {
-            dice_container.innerHTML = '';
-          }, 5000);
-        });
-      })();
+      const dotPositionMap = {
+        1: ['middle'],
+        2: ['top-left', 'bottom-right'],
+        3: ['top-left', 'middle', 'bottom-right'],
+        4: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
+        5: ['top-left', 'top-right', 'bottom-left', 'bottom-right', 'middle'],
+        6: [
+          'top-left',
+          'top-right',
+          'bottom-left',
+          'bottom-right',
+          'middle-left',
+          'middle-right',
+        ],
+      };
+      const button = document.querySelector('button');
+      button.addEventListener('click', function () {
+        const inputVal = document.querySelector('#input').value;
+        if (!inputVal) {
+          alert('Please pick a number');
+          return;
+        }
+        const inputNum = parseInt(inputVal);
+        if (inputNum <= 0) {
+          alert('Please pick a number that is greater than 0');
+          return;
+        }
+        const randomNums = Array.from(
+          { length: inputNum },
+          () => Math.floor(Math.random() * 6) + 1
+        );
+        const dice_container = document.querySelector('.dice-container');
+        for (let i = 0; i < randomNums.length; i++) {
+          const dice = document.createElement('div');
+          dice.className = 'dice';
+          const points = randomNums[i];
+          const classes = dotPositionMap[points];
+          classes.forEach((c) => {
+            const positon = document.createElement('div');
+            positon.className = c;
+            dice.appendChild(positon);
+          });
+          dice_container.appendChild(dice);
+        }
+        setTimeout(() => {
+          dice_container.innerHTML = '';
+        }, 5000);
+      });
     </script>
   </body>
 </html>

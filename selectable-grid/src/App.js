@@ -45,7 +45,7 @@ function App() {
       boxRef.current.style.width = `${Math.abs(widthMoved)}px`;
       boxRef.current.style.height = `${Math.abs(heightMovd)}px`;
 
-      const { left, top } = boxRef.current;
+      const { left, top } = boxRef.current.style;
 
       const newLeft = pxRemover(left);
       const newTop = pxRemover(top);
@@ -76,8 +76,6 @@ function App() {
           grids[i].style.background = 'transparent';
         }
       }
-
-      window.addEventListener('mouseup', up);
     };
 
     const up = () => {
@@ -94,12 +92,15 @@ function App() {
     };
 
     window.addEventListener('mousedown', down);
-    return () => {};
+    window.addEventListener('mouseup', up);
   }, []);
 
   return (
     <>
-      <div ref={boxRef} style={{ position: 'absolute' }}></div>
+      <div
+        ref={boxRef}
+        style={{ position: 'absolute', userSelect: 'none' }}
+      ></div>
       <div
         className="grid-container"
         style={{

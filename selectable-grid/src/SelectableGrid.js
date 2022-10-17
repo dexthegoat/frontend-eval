@@ -6,7 +6,7 @@ const CELL_SIZE = 20;
 const NUM_OF_COLUMNS = 10;
 const NUM_OF_ROWS = 10;
 
-const grids = Array.from(Array(NUM_OF_COLUMNS * NUM_OF_ROWS).keys());
+const grids = Array(NUM_OF_COLUMNS * NUM_OF_ROWS).fill(0);
 
 const SelectableGrid = () => {
   const boxRef = useRef();

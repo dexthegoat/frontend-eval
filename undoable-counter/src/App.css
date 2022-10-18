@@ -1,0 +1,55 @@
+header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+nav {
+  margin-left: 25%;
+  margin-bottom: 50px;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav button {
+  width: 125px;
+  height: 125px;
+}
+
+main {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 100px;
+}
+
+.minus,
+.add {
+  display: flex;
+  gap: 10px;
+}
+
+.minus button,
+.add button {
+  height: 50px;
+  width: 50px;
+}
+
+.value {
+  font-size: 40px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.history-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.history {
+  width: 400px;
+  height: 400px;
+  border: 2px solid black;
+}
